@@ -62,14 +62,14 @@ else:
 
 	file = open(arquivo).read()
 	get_defaul = re.compile(r'[\w.-]+@[\w.-]+')
-	emails = re.findall(get_defaul, file)
-	_rm_dup = sorted(set(emails))
+	emails_raw = re.findall(get_defaul, file)
+	_rm_dup = sorted(set(emails_raw))
 	for email in _rm_dup:
 		with open(output,'a')  as out:
 			out.write(email+'\n')
 			out.close()
 			time.sleep(00.1)
 			print(' \033[1;37m[+] '+email+' [+]\033[m')
-	print('\n\033[1;32m[+] TOTAL DE EMAILS   | ',len(file),' <')
-	print('\n [+] EMAILS REPETIDOS  | ',len(file)-len(_rm_dup),' <')
+	print('\n\033[1;32m[+] TOTAL DE EMAILS   | ',len(emails_raw),' <')
+	print('\n [+] EMAILS REPETIDOS  | ',len(emails_raw)-len(_rm_dup),' <')
 	print('\n [+] EMAILS FILTRADOS  | ',len(_rm_dup),' <\033[m\n\n')
